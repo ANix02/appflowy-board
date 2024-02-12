@@ -206,6 +206,17 @@ class AppFlowyBoardController extends ChangeNotifier
     getGroupController(groupId)?.insert(index, item);
   }
 
+  /// Sets the group draggability and item draggability
+  ///
+  /// If [groupDragging] is true, the group can be dragged.
+  /// If [itemDragging] is true, the item can be dragged.
+  void setGroupDraggability(bool groupDragging, bool itemDragging) {
+    for (final groupController in _groupControllers.values) {
+      groupController.setDraggability(groupDragging, itemDragging);
+    }
+    notifyListeners();
+  }
+
   /// Removes the item with id [itemId] from the group
   ///
   /// It will do nothing if the group with id [groupId] is not exist
